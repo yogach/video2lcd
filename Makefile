@@ -24,18 +24,16 @@ export CFLAGS LDFLAGS
 TOPDIR := $(shell pwd)
 export TOPDIR
 
-TARGET := digitpic
+TARGET := video2lcd
 
 
 obj-y += main.o
 obj-y += display/
-obj-y += encoding/
-obj-y += fonts/
-obj-y += input/
 obj-y += debug/
 obj-y += render/
-obj-y += page/
-obj-y += file/
+obj-y += video/
+obj-y += convert/
+
 
 all : 
 	make -C ./ -f $(TOPDIR)/Makefile.build

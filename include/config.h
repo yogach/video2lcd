@@ -1,4 +1,3 @@
-
 #ifndef _CONFIG_H
 #define _CONFIG_H
 
@@ -11,10 +10,9 @@
 #define COLOR_BACKGROUND   0xE7DBB5  /* 泛黄的纸 */
 #define COLOR_FOREGROUND   0x514438  /* 褐色字体 */
 
-//#define DBG_PRINTF(...)  
-#define DBG_PRINTF DebugPrint
+  
+#define DBG_PRINTF DebugPrint("%s[%d]:"fmt,__FILE__,__LINE__,##__VA_ARGS__)
 
-/* 图标所在目录 */
-#define ICON_PATH  "/etc/digitpic/icons"
+
 
 #endif /* _CONFIG_H */
