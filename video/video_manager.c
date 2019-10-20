@@ -72,6 +72,8 @@ int VideoInit (void)
 {
 	int iError;
 
+	iError = V4l2Init();
+
     
 	return iError;
 }
