@@ -14,7 +14,7 @@ static int g_aiSupportedFormats[] = {V4L2_PIX_FMT_YUYV, V4L2_PIX_FMT_MJPEG, V4L2
 static T_VideoOpr g_tV4l2VideoOpr;
 
 
-//检查是否是此文件能支持的格式
+//检查是否是设备支持的操作模式 是否是本软件支持的
 static int isSupportThisFormat ( int iPixelFormat )
 {
 	int i;
@@ -319,7 +319,7 @@ static int V4l2InitDevice ( char* strDevName, PT_VideoDevice ptVideoDevice )
 	{
 	    
 		/*如果设备支持的V4L2_CAP_STREAMING操作模式
-         *首先使用VIDIOC_QUERYBUF出队列
+         *首先使 VIDIOC_QUERYBUF 出队列
          *使用mmap将数据映射到内存上
 		 *然后使用VIDIOC_QBUF重新入队列
 		 */

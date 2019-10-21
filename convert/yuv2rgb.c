@@ -181,9 +181,9 @@ static int Yuv2RgbConvertExit ( PT_VideoBuf ptVideoBufOut )
 	return 0;
 }
 
-static T_VideoConvert g_Yuv2RgbConvert =
+static T_VideoConvert g_tYuv2RgbConvert =
 {
-	.name = "Yuv2Rgb",
+	.name = "yuv2rgb",
 	.isSupport =isSupportYuv2Rgb,
 	.Convert  = Yuv2RgbConvert,
 	.ConvertExit =Yuv2RgbConvertExit,
@@ -192,6 +192,6 @@ static T_VideoConvert g_Yuv2RgbConvert =
 
 int Yuv2RgbConvertInit ( void )
 {
-	return  RegisterVideoConvertOpr ( &g_Yuv2RgbConvert );
+	return  RegisterVideoConvertOpr ( &g_tYuv2RgbConvert );
 }
 
