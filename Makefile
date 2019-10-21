@@ -28,11 +28,12 @@ TARGET := video2lcd
 
 
 obj-y += main.o
-obj-y += display/
+obj-y += convert/
 obj-y += debug/
+obj-y += display/
 obj-y += render/
 obj-y += video/
-obj-y += convert/
+
 
 
 all : 
