@@ -1,6 +1,7 @@
 
 #include <config.h>
 #include <disp_manager.h>
+#include <stdlib.h>
 #include <string.h>
 
 static PT_DispOpr g_ptDispOprHead;

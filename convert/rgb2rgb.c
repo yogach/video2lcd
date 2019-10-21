@@ -1,5 +1,7 @@
 #include <config.h>
 #include <convert_manager.h>
+#include <stdlib.h>
+#include <string.h>
 
 
 static int isSupportRgb2Rgb ( int iPixelFormatIn, int iPixelFormatOut )
@@ -87,7 +89,7 @@ static int Rgb2RgbConvert ( PT_VideoBuf ptVideoBufIn,PT_VideoBuf ptVideoBufOut )
 
 		for ( y=0; y<ptPixelDatasOut->iHeight; y++ )
 		{
-			for ( x=0; x<ptPixelDatasOut->iWidth  = ptPixelDatasIn->iWidth; x++ )
+			for ( x=0; x<ptPixelDatasOut->iWidth ; x++ )
 			{
 				color = *pwSrc++; // 先将*pwSrc赋值给color， 后指针自加
 				/* 从RGB565格式的数据中提取出R,G,B */

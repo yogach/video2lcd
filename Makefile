@@ -14,10 +14,10 @@ OBJDUMP		= $(CROSS_COMPILE)objdump
 export AS LD CC CPP AR NM
 export STRIP OBJCOPY OBJDUMP
 
-CFLAGS := -Wall -Werror -O2 -g
+CFLAGS :=  -Wall -Werror -O2 -g  -std=c99
 CFLAGS += -I $(shell pwd)/include
 
-LDFLAGS := -lm  -ljpeg
+LDFLAGS := -lm  -ljpeg -std=c99
 
 export CFLAGS LDFLAGS
 
@@ -29,7 +29,6 @@ TARGET := video2lcd
 
 obj-y += main.o
 obj-y += convert/
-obj-y += debug/
 obj-y += display/
 obj-y += render/
 obj-y += video/

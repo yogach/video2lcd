@@ -6,7 +6,12 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
-
+#include <poll.h>
+#include <sys/ioctl.h>
+#include <unistd.h>
+#include <disp_manager.h>
+#include <sys/mman.h>
+#include <stdlib.h>
 
 //此文件支持的像素格式
 static int g_aiSupportedFormats[] = {V4L2_PIX_FMT_YUYV, V4L2_PIX_FMT_MJPEG, V4L2_PIX_FMT_RGB565};
@@ -77,7 +82,7 @@ static int V4l2GetFrameForStreaming ( PT_VideoDevice ptVideoDevice, PT_VideoBuf 
 	ptVideoBuf->tPixelDatas.iTotalBytes = tV4l2Buf.bytesused;
 	ptVideoBuf->tPixelDatas.aucPixelDatas = ptVideoDevice->pucVideBuf[tV4l2Buf.index];
 
-	return 0
+	return 0;
 
 }
 
@@ -132,7 +137,7 @@ static int V4l2GetFrameForReadWrite ( PT_VideoDevice ptVideoDevice, PT_VideoBuf 
 	ptVideoBuf->tPixelDatas.aucPixelDatas = ptVideoDevice->pucVideBuf[0];
 
 
-	return 0
+	return 0;
 
 }
 
@@ -140,7 +145,7 @@ static int V4l2GetFrameForReadWrite ( PT_VideoDevice ptVideoDevice, PT_VideoBuf 
 static int V4l2PutFrameForReadWrite ( PT_VideoDevice ptVideoDevice, PT_VideoBuf ptVideoBuf )
 {
 
-	return 0
+	return 0;
 
 }
 
@@ -159,7 +164,6 @@ static int V4l2StartDevice ( PT_VideoDevice ptVideoDevice )
     }
     return 0;
 
-	return 0
 
 }
 
@@ -176,7 +180,7 @@ static int V4l2StopDevice ( PT_VideoDevice ptVideoDevice )
     	return -1;
     }
 
-	return 0
+	return 0;
 
 }
 
@@ -217,7 +221,7 @@ static int V4l2InitDevice ( char* strDevName, PT_VideoDevice ptVideoDevice )
 	struct v4l2_format	tV4l2Fmt;
 	struct v4l2_requestbuffers tV4l2ReqBuffs;
 	struct v4l2_buffer tV4l2Buf;
-	int iLcdWidth, iLcdHeigt, iLcdBpp;
+	int iLcdWidth, iLcdHeigt, iLcdBpp ,i;
 
 	iFd = open ( strDevName, O_RDWR ); //以可读可写方式打开设备
 	if ( iFd < 0 )
@@ -375,8 +379,8 @@ static int V4l2InitDevice ( char* strDevName, PT_VideoDevice ptVideoDevice )
 	    /*如果设备支持的V4L2_CAP_READWRITE操作模式
          * 直接malloc一个空间
 	     */ 
-		g_tV4l2VideoOpr->GetFrame =V4l2GetFrameForReadWrite;
-		g_tV4l2VideoOpr->PutFrame =V4l2PutFrameForReadWrite;
+		g_tV4l2VideoOpr.GetFrame =V4l2GetFrameForReadWrite;
+		g_tV4l2VideoOpr.PutFrame =V4l2PutFrameForReadWrite;
 
 		//分配一个videobuf空间
 		ptVideoDevice->iVideoBufCnt  = 1;
@@ -427,6 +431,7 @@ static int V4l2ExitDevice ( PT_VideoDevice ptVideoDevice )
 
 	}
 	close ( ptVideoDevice->iFd ); // 关闭设备
+	return 0;
 }
 
 

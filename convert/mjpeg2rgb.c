@@ -1,10 +1,11 @@
 /* MJPEG : 实质上每一帧数据都是一个完整的JPEG文件 */
 
-#include <convert_manager.h>
+#include <config.h>
 #include <stdlib.h>
 #include <string.h>
 #include <setjmp.h>
 #include <jpeglib.h>
+#include <convert_manager.h>
 
 typedef struct MyErrorMgr
 {

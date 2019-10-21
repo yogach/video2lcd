@@ -1,7 +1,8 @@
-#ifdef  __VIDEO_MANAGER_H__
+#ifndef __VIDEO_MANAGER_H__
 #define __VIDEO_MANAGER_H__
 
 #include <pic_operation.h>
+#include <linux/videodev2.h>
 
 
 #define NB_BUFFER 4

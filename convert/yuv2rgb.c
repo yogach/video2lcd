@@ -1,6 +1,8 @@
 #include <config.h>
 #include <convert_manager.h>
-#include <color.h>
+#include "color.h" //包含当前目录下的color.h
+#include <stdlib.h>
+#include <string.h>
 
 
 static int isSupportYuv2Rgb ( int iPixelFormatIn, int iPixelFormatOut )
@@ -160,7 +162,7 @@ static int Yuv2RgbConvert ( PT_VideoBuf ptVideoBufIn,PT_VideoBuf ptVideoBufOut )
 			}
 		}
 
-		Pyuv422torgb565 ( ptPixelDatasIn->aucPixelDatas, ptPixelDatasOut->aucPixelDatas,ptPixelDatasIn->iWidth, ptPixelDatasIn->iHeight );
+		Pyuv422torgb32 ( ptPixelDatasIn->aucPixelDatas, ptPixelDatasOut->aucPixelDatas,ptPixelDatasIn->iWidth, ptPixelDatasIn->iHeight );
 		return 0;
 
 
@@ -192,6 +194,8 @@ static T_VideoConvert g_tYuv2RgbConvert =
 
 int Yuv2RgbConvertInit ( void )
 {
+    
+    initLut();
 	return  RegisterVideoConvertOpr ( &g_tYuv2RgbConvert );
 }
 

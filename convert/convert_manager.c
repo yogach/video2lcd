@@ -70,6 +70,10 @@ PT_VideoConvert GetVideoConvertOpr (char * pcName)
 int VideoConvertInit (void)
 {
 	int iError;
+	iError = Rgb2RgbConvertInit();
+	iError |= Yuv2RgbConvertInit();
+	iError |= Mjpeg2RgbConvertInit();
+	
     
 	return iError;
 }
