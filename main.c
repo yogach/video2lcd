@@ -22,7 +22,7 @@
 /* digitpic <freetype_file> */
 int main(int argc, char **argv)
 {	
-	//int iError;
+	int iError;
 
 	if (argc != 2)
 	{
