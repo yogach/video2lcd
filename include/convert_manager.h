@@ -21,6 +21,7 @@ typedef struct VideoConvert
 int RegisterVideoConvertOpr (PT_VideoConvert ptVideoConvertOpr);
 void ShowVideoConvertOpr (void);
 PT_VideoConvert GetVideoConvertOpr (char * pcName);
+PT_VideoConvert GetVideoConvertForFormats (int iPixelFormatIn, int iPixelFormatOut);
 
 
 

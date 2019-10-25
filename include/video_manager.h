@@ -19,7 +19,7 @@ typedef struct VideoBuf
 } T_VideoBuf,*PT_VideoBuf;
 
 
-//video设备属性以及数据
+//video设备属性以及操作函数
 struct VideoDevice
 {
 	int iFd; //文件句柄
@@ -60,6 +60,7 @@ PT_VideoOpr GetVideoOpr ( char* pcName );
 int VideoInit ( void );
 
 int V4l2Init ( void );
+int	 VideoDeviceInit(char *DeviceName, PT_VideoDevice ptVideoDevice);
 
 
 #endif

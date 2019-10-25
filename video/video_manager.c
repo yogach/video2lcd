@@ -66,7 +66,27 @@ PT_VideoOpr GetVideoOpr (char * pcName)
 	return NULL;
 }
 
+
+int	 VideoDeviceInit(char *DeviceName, PT_VideoDevice ptVideoDevice)
+{
+   int iError;
+   
+   PT_VideoOpr ptTmp = g_ptVideoOprHead;
 
+   //遍历链表 调用初始化函数 如果初始化成功 返回成功
+   while (ptTmp)
+   {
+       iError = ptTmp->InitDevice(DeviceName,ptVideoDevice);
+	   if (!iError)
+	   {
+		   return 0;
+	   }
+   
+	   ptTmp = ptTmp->ptNext;
+   }
+
+  return -1;
+}
 
 int VideoInit (void)
 {

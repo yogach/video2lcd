@@ -66,6 +66,24 @@ PT_VideoConvert GetVideoConvertOpr (char * pcName)
 	return NULL;
 }
 
+//È¡³ö
+PT_VideoConvert GetVideoConvertForFormats (int iPixelFormatIn, int iPixelFormatOut)
+{
+	PT_VideoConvert ptTmp = g_ptVideoConvertOprHead;
+
+	while (ptTmp)
+	{
+		if (ptTmp->isSupport(iPixelFormatIn,iPixelFormatOut))
+		{
+			return ptTmp;
+		}
+
+		ptTmp = ptTmp->ptNext;
+	}
+
+	return NULL;
+}
+
 
 int VideoConvertInit (void)
 {

@@ -191,7 +191,7 @@ static int V4l2GetFormat ( PT_VideoDevice ptVideoDevice )
 }
 
 
-//v4l2设备初始化
+//v4l2设备初始化 --传入设备名 ---传出设备操作函数
 /* open
  * VIDIOC_QUERYCAP 确定它是否视频捕捉设备,支持哪种接口(streaming/read,write)
  * VIDIOC_ENUM_FMT 查询支持哪种格式
