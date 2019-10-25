@@ -2,7 +2,6 @@
 #define _CONFIG_H
 
 #include <stdio.h>
-#include <debug_manager.h>
 
 #define FB_DEVICE_NAME "/dev/fb0"
   
