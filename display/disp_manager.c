@@ -554,14 +554,13 @@ int FlushPixelDatasToDev(PT_PixelDatas ptPixelDatas)
  * 输出参数： 无
  * 返 回 值： 0 - 成功, 其他值 - 失败
  * 修改日期        版本号     修改人	      修改内容
- * -----------------------------------------------
- * 2013/02/08	     V1.0	  韦东山	      创建
  ***********************************************************************/
 int DisplayInit(void)
 {
 	int iError;
 	
 	iError = FBInit();
+    iError |= CRTInit();
 
 	return iError;
 }

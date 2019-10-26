@@ -52,6 +52,7 @@ typedef struct DispOpr {
 	int iLineWidth;          /* 一行数据占据多少字节 */
 	unsigned char *pucDispMem;   /* 显存地址 */
 	int (*DeviceInit)(void);     /* 设备初始化函数 */
+	int (*DeviceExit)(void);     /* 设备退出函数 */
 	int (*ShowPixel)(int iPenX, int iPenY, unsigned int dwColor);    /* 把指定座标的象素设为某颜色 */
 	int (*CleanScreen)(unsigned int dwBackColor);                    /* 清屏为某颜色 */
 	int (*ShowPage)(PT_PixelDatas ptPixelDatas);                     /* 显示一页,数据源自ptVideoMem */
@@ -227,6 +228,9 @@ void ClearVideoMemRegion(PT_VideoMem ptVideoMem, PT_Layout ptLayout, unsigned in
  * 2013/02/08	     V1.0	  韦东山	      创建
  ***********************************************************************/
 int FBInit(void);
+int CRTInit(void);
+
+
 
 int GetVideoBufForDisplay(PT_VideoBuf ptFrameBuf);
 int FlushPixelDatasToDev(PT_PixelDatas ptPixelDatas);

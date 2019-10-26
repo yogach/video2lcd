@@ -50,8 +50,8 @@ int main ( int argc, char** argv )
 	/* 注册显示设备 */
 	DisplayInit();
 
-	SelectAndInitDefaultDispDev ( "fb" );
-	GetDispResolution ( &iLcdWidth, &iLcdHight, &iLcdBpp );
+	SelectAndInitDefaultDispDev ( "crt" );
+	GetDispResolution ( &iLcdWidth, &iLcdHight, &iLcdBpp ); //获取屏幕的分辨率与BPP
 	//获取lcd信息
 	GetVideoBufForDisplay ( &tFrameBuf );
 	iPixelFormatOfDisp = tFrameBuf.iPixelFormat;
@@ -67,7 +67,7 @@ int main ( int argc, char** argv )
 		return -1;
 	}
 
-	iPixelFormatOfVideo = tVideoDevice.iPixelFormat;
+	iPixelFormatOfVideo = tVideoDevice.iPixelFormat; //设置video像素格式 之后会将video数据转化为该格式进行显示
 
 	//video格式转化初始化
 	VideoConvertInit();
