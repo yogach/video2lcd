@@ -50,11 +50,11 @@ int main ( int argc, char** argv )
 	/* 注册显示设备 */
 	DisplayInit();
 
-	SelectAndInitDefaultDispDev ( "crt" );
+	SelectAndInitDefaultDispDev ( "fb" );
 	GetDispResolution ( &iLcdWidth, &iLcdHight, &iLcdBpp ); //获取屏幕的分辨率与BPP
 	//获取lcd信息
 	GetVideoBufForDisplay ( &tFrameBuf );
-	iPixelFormatOfDisp = tFrameBuf.iPixelFormat;
+	iPixelFormatOfDisp = tFrameBuf.iPixelFormat; //获取lcd的像素格式 之后会将video采集到的数据转化为该格式进行显示
 
 	//初始化video设备
 	VideoInit();
@@ -67,8 +67,7 @@ int main ( int argc, char** argv )
 		return -1;
 	}
 
-	iPixelFormatOfVideo = tVideoDevice.iPixelFormat; //设置video像素格式 之后会将video数据转化为该格式进行显示
-
+	iPixelFormatOfVideo = tVideoDevice.iPixelFormat; //设置video像素格式 
 	//video格式转化初始化
 	VideoConvertInit();
 
@@ -76,10 +75,8 @@ int main ( int argc, char** argv )
 	ptVideoConvert =  GetVideoConvertForFormats ( iPixelFormatOfVideo, iPixelFormatOfDisp );
 	if ( ptVideoConvert == NULL )
 	{
-
 		DBG_PRINTF ( "can't support this Formats convert \r\n" );
 		return -1;
-
 	}
 
 
@@ -163,7 +160,7 @@ int main ( int argc, char** argv )
 			ptVideoBufCur = &tZoomBuf;
 		}
 
-		//算出图像起始位置
+		//算出图像起始位置 居中显示
 		iTopLeftX = (iLcdWidth -ptVideoBufCur->tPixelDatas.iWidth ) /2;
 		iTopLeftY = (iLcdHight -ptVideoBufCur->tPixelDatas.iHeight ) /2;
 

@@ -1,7 +1,7 @@
 #如需编译在开发板上执行的程序 
 #需设置CROSS_COMPILE = arm-linux- 
 #在pc上执行则CROSS_COMPILE =
-CROSS_COMPILE = 
+CROSS_COMPILE = arm-linux-
 AS		= $(CROSS_COMPILE)as
 LD		= $(CROSS_COMPILE)ld
 CC		= $(CROSS_COMPILE)gcc

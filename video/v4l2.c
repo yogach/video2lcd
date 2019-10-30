@@ -66,7 +66,7 @@ static int V4l2GetFrameForStreaming ( PT_VideoDevice ptVideoDevice, PT_VideoBuf 
 		return -1;
 	}
 
-	ptVideoDevice->iVideoBufCurIndex = tV4l2Buf.index;
+	ptVideoDevice->iVideoBufCurIndex = tV4l2Buf.index; //获得当前数据存在哪个buff中
 
 	ptVideoBuf->iPixelFormat = ptVideoDevice->iPixelFormat;
 	ptVideoBuf->tPixelDatas.iHeight = ptVideoDevice->iHeight;
@@ -259,12 +259,13 @@ static int V4l2InitDevice ( char* strDevName, PT_VideoDevice ptVideoDevice )
 
 	ptVideoDevice->iVideoCapabilities = tV4l2Cap.capabilities;
 
-	//查询设备支持操作模式
+	//查询设备的像素格式
 	memset ( &tFmtDesc, 0, sizeof ( struct v4l2_fmtdesc ) );
 	tFmtDesc.index = 0;
 	tFmtDesc.type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
 	while ( ( iError = ioctl ( iFd, VIDIOC_ENUM_FMT, &tFmtDesc ) ) == 0 )
 	{
+	    //对比本应用程序可支持的像素格式
 		if ( isSupportThisFormat ( tFmtDesc.pixelformat ) )
 		{
 			ptVideoDevice->iPixelFormat = tFmtDesc.pixelformat;
@@ -273,7 +274,7 @@ static int V4l2InitDevice ( char* strDevName, PT_VideoDevice ptVideoDevice )
 		tFmtDesc.index++;
 	}
 
-	if ( !ptVideoDevice->iPixelFormat ) //如果未获取到设备支持的操作模式 跳出
+	if ( !ptVideoDevice->iPixelFormat ) //如果未获取到设备支持的像素格式 跳出
 	{
 		DBG_PRINTF ( "can not support the format of this device\n" );
 		goto err_exit;
@@ -323,9 +324,9 @@ static int V4l2InitDevice ( char* strDevName, PT_VideoDevice ptVideoDevice )
 	{
 	    
 		/*如果设备支持的V4L2_CAP_STREAMING操作模式
-         *首先使 VIDIOC_QUERYBUF 出队列
+         *首先VIDIOC_QUERYBUF出队列
          *使用mmap将数据映射到内存上
-		 *然后使用VIDIOC_QBUF重新入队列
+		 *然后VIDIOC_QBUF重新入队列
 		 */
 
 		//map the buffers
