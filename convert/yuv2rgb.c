@@ -54,7 +54,7 @@ static unsigned int Pyuv422torgb565 ( unsigned char* input_ptr, unsigned char* o
 		g = g >> 2;
 		b = b >> 3;
 		color = ( r << 11 ) | ( g << 5 ) | b;
-		*output_pt++ = color & 0xff;
+		*output_pt++ = color & 0xff;//此处写法有隐患
 		*output_pt++ = ( color >> 8 ) & 0xff;
 
 		r = R_FROMYV ( Y1,V );
