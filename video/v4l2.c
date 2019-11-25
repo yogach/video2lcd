@@ -259,10 +259,10 @@ static int V4l2InitDevice ( char* strDevName, PT_VideoDevice ptVideoDevice )
 
 	ptVideoDevice->iVideoCapabilities = tV4l2Cap.capabilities;
 
-	//查询设备的像素格式
+	//查询设备的像素格式 可能会有多个支持的像素格式 将每个都取出来 一一对比本应用支持的像素格式
 	memset ( &tFmtDesc, 0, sizeof ( struct v4l2_fmtdesc ) );
 	tFmtDesc.index = 0;
-	tFmtDesc.type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
+	tFmtDesc.type = V4L2_BUF_TYPE_VIDEO_CAPTURE;//设备类型设置为video设备
 	while ( ( iError = ioctl ( iFd, VIDIOC_ENUM_FMT, &tFmtDesc ) ) == 0 )
 	{
 	    //对比本应用程序可支持的像素格式
